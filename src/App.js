@@ -37,6 +37,21 @@ function filter(pronoun, mood, tense) {
   }
   
 }
+// function filterCurry(mood) {
+//   if(isLoaded) {
+//     let pronouns = []
+//     return function(pronoun) {
+//       return function(tense) {
+//         allWords.filter(word => word.meaning.map(el => el.performer === pronoun && el.mood === mood && el.tense === tense ? pronouns.push({word:word.word, meaning: el}) : pronouns))
+//         return pronouns[0].word
+//       }
+//         }
+//   }
+  
+//     }
+// const allIndicative = filterCurry('Indicative')
+// const allSubjunctive = filterCurry('Subjunctive')
+//  console.log(allIndicative('yo')('Present'))
 
 
 
