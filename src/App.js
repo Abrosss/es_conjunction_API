@@ -1,12 +1,21 @@
 
 import './css/styles.css';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import YourSvg  from './assets/images/arrow.svg';
+import {capitalizeFirstLetter} from './functions/functions'
 function App() {
+ 
 const [result, setResult] = useState([])
 const [isLoaded, setIsLoaded] = useState(false)
-const [word, setWord] = useState(null)
+const [loading, setLoading] = useState(false)
+const [tableRequested, setTableRequested] = useState(false)
+const [currentWord, setCurrentWord] = useState(null)
 const [allWords, setAllWords] = useState([])
+const [isRoot, setIsRoot] = useState(false)
+console.log(result)
+const input = useRef()
+
 let pronouns = ['yo', 'tú', "él/ella/usted", 'nosotros/nosotras', 'vosotros/vosotras', 'ellos/ellas/ustedes']
 let tenses = ['Present', 'Preterite', 'Imperfect', 'Conditional', 'Future']
 console.log(result)
@@ -14,15 +23,24 @@ async function handleSubmit(e, word) {
  let root
   e.preventDefault()
   setIsLoaded(false)
+  setLoading(true)
   await axios.get(`http://localhost:5000/admin/verbs/${word}`).then((response) => {
     setResult(response.data)
     if(response.data[0].meaning[0].tense === "Infinitive")
-    root = word
-    else root = response.data[0].meaning[0].infinitive
+    {
+      root = word
+      setIsRoot(true)
+    }
+   
+    else {
+      root = response.data[0].meaning[0].infinitive
+      setIsRoot(false)
+    } 
   });
   await axios.get(`http://localhost:5000/admin/roots/${root}`).then((response) => {
     setAllWords(response.data)
     setIsLoaded(true)
+    setLoading(false)
   });
 
 }
@@ -57,40 +75,64 @@ function filter(pronoun, mood, tense) {
 
   return (
     <>
-    <header>
+    <nav>
 
-    </header>
-    <main>
-      <form>
-      <input onChange={(e) => setWord(e.target.value) } placeholder='spanish word here' name='word'></input>
-      <button onClick={(e) => handleSubmit(e, word)}>search</button>
+    </nav>
+    <header>
+      <h1>Spanish Verbs</h1>
+    <form>
+      <input ref={input} autoComplete='off' onChange={(e) => setCurrentWord(e.target.value) } placeholder='spanish word here' name='word'></input>
+      <button onClick={(e) => handleSubmit(e, currentWord)}><img src={YourSvg}></img></button>
       </form>
-    </main>
-    <section>
+    </header>
+
+    <main>
+    {loading &&
+    <section className='table'>
+<lord-icon
+    src="https://cdn.lordicon.com/ekjuxqnh.json"
+    trigger="loop"
+    delay="2000"
+    colors="primary:#6c63ff"
+    style={{width:"50px",height:"50px", opacity: ".8"}}>
+</lord-icon>
+    </section>
+    }
       {isLoaded && result.map(word => (
         <section className='table'>
-        <p>Pronouns: {word.meaning[0].performer}</p>
-        <p>Infinitive: {word.meaning[0].infinitive}</p>
-        <p>Translation: {word.meaning[0].translation}</p>
+          {!isRoot ?
+           <p className='pronoun'>{capitalizeFirstLetter(word.meaning[0].performer)} <span className='selected'>{word.word}</span> </p> :
+           <p className='pronoun dotted' onClick={() => setTableRequested(!tableRequested)} ><span className='selected'>{capitalizeFirstLetter(word.word)}</span> </p>
+          }
+       <p className='italic'>{word.meaning[0].translation}</p>
+        
+        { !isRoot ?
+          
+          <p>show conjugation for <span onClick={() => setTableRequested(!tableRequested)} className='dotted'>{word.meaning[0].infinitive} </span></p> :
+          <p>show conjugation for <span onClick={() => setTableRequested(!tableRequested)} className='dotted'>{word.word} </span></p>
+        }
+        
+ 
+        
       </section>
       ))
   
       
       }
-      <section>
+      <section className='table'>
       <table>
       <tbody>
           <tr>
           <th></th>
-          {isLoaded && tenses.map(tense => (
+          {isLoaded && tableRequested && tenses.map(tense => (
             <th>{tense}</th>
           ))}
           </tr>
-          {isLoaded && pronouns.map(pronoun => (
+          {isLoaded && tableRequested && pronouns.map(pronoun => (
           <tr>
             <td>{pronoun}</td>
-            {isLoaded && tenses.map(tense => (
-              <td className={word === filter(pronoun, "Indicative", tense) ? "selected" : ""}>{allWords.length > 0 && filter(pronoun, "Indicative", tense)}</td>
+            {tableRequested && tenses.map(tense => (
+              <td className={currentWord === filter(pronoun, "Indicative", tense) ? "selected" : ""}>{allWords.length > 0 && filter(pronoun, "Indicative", tense)}</td>
             ) )}
           </tr>
 
@@ -100,7 +142,10 @@ function filter(pronoun, mood, tense) {
        </tbody>
          </table>
       </section>
-    </section>
+     
+      <script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
+
+    </main>
     </>
   );
 }
