@@ -45,7 +45,7 @@ function App() {
     if (!err) {
       setIsLoaded(false)
       setLoading(true)
-      await axios.get(`http://localhost:5000/admin/verbs/${word}`).then((response) => {
+      await axios.get(`http://localhost:5000/admin/verbs/${word.toLowerCase()}`).then((response) => {
         setResult(response.data)
         if (response.data[0].meaning[0].tense === "Infinitive") {
           root = word
