@@ -45,7 +45,7 @@ function App() {
     if (!err) {
       setIsLoaded(false)
       setLoading(true)
-      await axios.get(`http://localhost:5000/admin/verbs/${word.toLowerCase()}`).then((response) => {
+      await axios.get(`/admin/verbs/${word.toLowerCase()}`).then((response) => {
         setResult(response.data)
         if (response.data[0].meaning[0].tense === "Infinitive") {
           root = word
@@ -59,7 +59,7 @@ function App() {
       }).catch(err => {
         if (err) setError('No word found. Check the spelling')
       })
-      await axios.get(`http://localhost:5000/admin/roots/${root}`).then((response) => {
+      await axios.get(`/admin/roots/${root}`).then((response) => {
         setAllWords(response.data)
         setIsLoaded(true)
         setLoading(false)
