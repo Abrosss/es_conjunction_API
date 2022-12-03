@@ -1,8 +1,9 @@
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
 nav {
     height: 4rem;
     padding: 1rem;
@@ -12,7 +13,7 @@ nav {
         width: 2rem;
         height: 2rem;
     }
-  
+
     a {
         text-decoration: none;
         font-weight: bold;
@@ -22,75 +23,102 @@ nav {
         align-items: center;
         gap: 1rem;
     }
- 
+
 }
+
 header {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
-
     background-position: bottom center;
-
     background-repeat: no-repeat;
     background-size: cover;
-
     align-items: center;
     padding-top: 3rem;
     padding-bottom: 3rem;
     height: 15rem;
+
     h1 {
         letter-spacing: 3px;
         font-size: 3.5rem;
     }
 }
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .pronoun {
     font-size: 2.5rem;
     font-weight: bold;
 }
+
 .italic {
     font-style: italic;
 }
+
+.bold {
+    font-weight: bold;
+}
+
+.dotted {
+    border-bottom: 1px dotted #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #f0f0f0;
+    padding: 0 .5rem;
+}
+
 form {
     display: flex;
     width: 50%;
     justify-content: center;
     align-items: center;
     position: relative;
-}
-input {
-    width: 100%;
-    padding: 1rem 0;
-    padding-left: 1rem;
-    border-radius: 15px;
-    border: none;
-    font-size: 1.3rem;
-    box-shadow: 0 0 50px  rgba(0,0,0,0.16);
-    &:focus {
+
+    input {
+        width: 100%;
+        padding: 1rem 0;
+        padding-left: 1rem;
+        border-radius: 15px;
+        border: none;
+        font-size: 1.3rem;
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.16);
+
+        &:focus {
+            outline: none;
+            border: none;
+        }
+    }
+
+    button {
+        position: absolute;
+        right: 1rem;
+        width: 2rem;
+        height: 2rem;
+        background-color: transparent;
         outline: none;
         border: none;
+        cursor: pointer;
+
+        img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: cover;
+            transform: rotate(90deg);
+        }
     }
 }
-.bold {
-    font-weight: bold;
-}
-button {
-    position: absolute;
-    right: 1rem;
-    width: 2rem;
-    height: 2rem;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    img {
-        max-height: 100%;
-        max-width: 100%;
-        object-fit: cover;
-        transform: rotate(90deg);
-    }
-}
-.table {
+
+.table,
+.resultPanel {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -98,72 +126,27 @@ button {
     padding: 1.5rem 0;
     padding-bottom: 0
 }
-.balloon {
-	display: block;
-	position: absolute;
-	background-color: black;
-	width: 100px;
-	height: 130px;
-	border-radius: 50% 50% 50% 50% / 44% 44% 52% 54%;
-	left: 360px;
-	top: 160px;
-	animation: rise 5s infinite;
-}
-.string {
-	display: block;
-	position: absolute;
-	width: 3px;
-	height: 120px;
-	background-color: black;
-	left: 400px;
-	top: 270px;
-	transform: rotate(10deg);
-	animation: risestring 5s infinite;
-}
-.dotted {
-    border-bottom: 1px dotted #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-.selected {
-    background-color: #f0f0f0;
-    padding: 0 .5rem ;
-}
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-tr:first-child {
-    border-bottom: 1px black solid;
-}
-td, th {
-    padding: .3rem .5rem;
-   
-}
-td:not(:first-child) {
-  
-    &:hover {
-        background-color: antiquewhite;
+
+
+table {
+    tr:first-child {
+        border-bottom: 1px black solid;
     }
-}
-td:first-child {
-    font-weight: bold;
-}
-@keyframes rise {
-	from {
-		top: 160px;
-	}
-	to {
-		top: -300px;
-	}
-}
-@keyframes risestring {
-	from {
-		top: 270px;
-	}
-	to {
-		top: -190px;
-	}
+
+    td,
+    th {
+        padding: .3rem .5rem;
+
+    }
+
+    td:not(:first-child) {
+
+        &:hover {
+            background-color: antiquewhite;
+        }
+    }
+
+    td:first-child {
+        font-weight: bold;
+    }
 }

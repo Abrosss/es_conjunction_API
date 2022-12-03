@@ -41,6 +41,13 @@ header h1 {
   font-size: 3.5rem;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .pronoun {
   font-size: 2.5rem;
   font-weight: bold;
@@ -50,83 +57,8 @@ header h1 {
   font-style: italic;
 }
 
-form {
-  display: flex;
-  width: 50%;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-input {
-  width: 100%;
-  padding: 1rem 0;
-  padding-left: 1rem;
-  border-radius: 15px;
-  border: none;
-  font-size: 1.3rem;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.16);
-}
-input:focus {
-  outline: none;
-  border: none;
-}
-
 .bold {
   font-weight: bold;
-}
-
-button {
-  position: absolute;
-  right: 1rem;
-  width: 2rem;
-  height: 2rem;
-  background-color: transparent;
-  outline: none;
-  border: none;
-  cursor: pointer;
-}
-button img {
-  max-height: 100%;
-  max-width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  transform: rotate(90deg);
-}
-
-.table {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1.5rem 0;
-  padding-bottom: 0;
-}
-
-.balloon {
-  display: block;
-  position: absolute;
-  background-color: black;
-  width: 100px;
-  height: 130px;
-  border-radius: 50% 50% 50% 50%/44% 44% 52% 54%;
-  left: 360px;
-  top: 160px;
-  -webkit-animation: rise 5s infinite;
-          animation: rise 5s infinite;
-}
-
-.string {
-  display: block;
-  position: absolute;
-  width: 3px;
-  height: 120px;
-  background-color: black;
-  left: 400px;
-  top: 270px;
-  transform: rotate(10deg);
-  -webkit-animation: risestring 5s infinite;
-          animation: risestring 5s infinite;
 }
 
 .dotted {
@@ -140,59 +72,64 @@ button img {
   padding: 0 0.5rem;
 }
 
-main {
+form {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+form input {
+  width: 100%;
+  padding: 1rem 0;
+  padding-left: 1rem;
+  border-radius: 15px;
+  border: none;
+  font-size: 1.3rem;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.16);
+}
+form input:focus {
+  outline: none;
+  border: none;
+}
+form button {
+  position: absolute;
+  right: 1rem;
+  width: 2rem;
+  height: 2rem;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+form button img {
+  max-height: 100%;
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transform: rotate(90deg);
+}
+
+.table,
+.resultPanel {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem 0;
+  padding-bottom: 0;
 }
 
-tr:first-child {
+table tr:first-child {
   border-bottom: 1px black solid;
 }
-
-td, th {
+table td,
+table th {
   padding: 0.3rem 0.5rem;
 }
-
-td:not(:first-child):hover {
+table td:not(:first-child):hover {
   background-color: antiquewhite;
 }
-
-td:first-child {
+table td:first-child {
   font-weight: bold;
-}
-
-@-webkit-keyframes rise {
-  from {
-    top: 160px;
-  }
-  to {
-    top: -300px;
-  }
-}
-
-@keyframes rise {
-  from {
-    top: 160px;
-  }
-  to {
-    top: -300px;
-  }
-}
-@-webkit-keyframes risestring {
-  from {
-    top: 270px;
-  }
-  to {
-    top: -190px;
-  }
-}
-@keyframes risestring {
-  from {
-    top: 270px;
-  }
-  to {
-    top: -190px;
-  }
 }/*# sourceMappingURL=styles.css.map */
