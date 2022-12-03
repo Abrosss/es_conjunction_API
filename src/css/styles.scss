@@ -5,23 +5,43 @@
 }
 nav {
     height: 4rem;
+    padding: 1rem;
+    padding-left: 3rem;
+
+    img {
+        width: 2rem;
+        height: 2rem;
+    }
+  
+    a {
+        text-decoration: none;
+        font-weight: bold;
+        color: black;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
  
 }
 header {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    background-image: url(/src/assets/images/ordinary.svg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: contain;
     justify-content: center;
+    gap: 2rem;
+
+    background-position: bottom center;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+
     align-items: center;
-    padding: 2rem 0;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
     height: 15rem;
     h1 {
-        letter-spacing: 2px;
-        font-size: 3rem;
+        letter-spacing: 3px;
+        font-size: 3.5rem;
     }
 }
 .pronoun {
@@ -43,7 +63,13 @@ input {
     padding: 1rem 0;
     padding-left: 1rem;
     border-radius: 15px;
-
+    border: none;
+    font-size: 1.3rem;
+    box-shadow: 0 0 50px  rgba(0,0,0,0.16);
+    &:focus {
+        outline: none;
+        border: none;
+    }
 }
 .bold {
     font-weight: bold;
@@ -69,7 +95,8 @@ button {
     flex-direction: column;
     align-items: center;
     gap: .5rem;
-    padding: 2rem 0;
+    padding: 1.5rem 0;
+    padding-bottom: 0
 }
 .balloon {
 	display: block;
@@ -99,7 +126,8 @@ button {
     cursor: pointer;
 }
 .selected {
-    background-color: aqua;
+    background-color: #f0f0f0;
+    padding: 0 .5rem ;
 }
 main {
     display: flex;
@@ -107,7 +135,22 @@ main {
     align-items: center;
     justify-content: center;
 }
-
+tr:first-child {
+    border-bottom: 1px black solid;
+}
+td, th {
+    padding: .3rem .5rem;
+   
+}
+td:not(:first-child) {
+  
+    &:hover {
+        background-color: antiquewhite;
+    }
+}
+td:first-child {
+    font-weight: bold;
+}
 @keyframes rise {
 	from {
 		top: 160px;

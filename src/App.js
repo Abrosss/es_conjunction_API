@@ -3,6 +3,7 @@ import './css/styles.css';
 import axios from 'axios';
 import { useEffect, useState, useRef } from 'react';
 import YourSvg  from './assets/images/arrow.svg';
+import SpainFlag  from './assets/images/spain.svg';
 import {capitalizeFirstLetter} from './functions/functions'
 function App() {
  
@@ -87,7 +88,7 @@ function filter(pronoun, mood, tense) {
   return (
     <>
     <nav>
-
+    <a href=''><img src={SpainFlag}></img> Spanish Verbs</a>
     </nav>
     <header>
       <h1>Spanish Verbs</h1>
@@ -95,7 +96,7 @@ function filter(pronoun, mood, tense) {
       <input ref={input} autoComplete='off' onChange={(e) => {
         setCurrentWord(e.target.value)
         setError(null)
-        }} placeholder='spanish word here' name='word'></input>
+        }} placeholder='Conjugate' name='word'></input>
       <button onClick={(e) => handleSubmit(e, currentWord)}><img src={YourSvg}></img></button>
       </form>
     </header>
@@ -135,7 +136,8 @@ function filter(pronoun, mood, tense) {
   
       
       }
-      <section className='table'>
+     {isLoaded && tableRequested  && <section className='table'>
+        <h2>Indicative</h2>
       <table>
       <tbody>
           <tr>
@@ -157,7 +159,7 @@ function filter(pronoun, mood, tense) {
           
        </tbody>
          </table>
-      </section>
+      </section>}
      
       <script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
 
