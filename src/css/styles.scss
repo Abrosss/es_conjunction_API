@@ -124,9 +124,12 @@ form {
     align-items: center;
     gap: .5rem;
     padding: 1.5rem 0;
-    padding-bottom: 0
+    padding-bottom: 0;
+   
 }
-
+.resultPanel {
+    text-align: center;
+}
 
 table {
     tr:first-child {
@@ -148,5 +151,37 @@ table {
 
     td:first-child {
         font-weight: bold;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    nav {
+        padding-left: 0;
+        a {
+            justify-content: center;
+        }
+    }
+    header {
+        padding-right: 1rem ;
+        padding-left: 1rem;
+        padding-bottom: 0;
+        padding-top: 0;
+        height: 10rem;
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            display: none;
+        }
+        form {
+            width: 100%;
+        }
+    }
+    .table {
+        width: 100%;
+       flex-direction: row;
+        overflow-x: scroll;
+        h2 {
+            display: none;
+        }
     }
 }

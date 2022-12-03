@@ -31,13 +31,14 @@ function App() {
     else return
   }
   function inputChange(e) {
-    setCurrentWord(e.target.value)
+
     setError(null)
   }
 
   async function handleSubmit(e, word) {
     e.preventDefault()
     setTableRequested(false)
+    setCurrentWord(input.current.value)
     const err = validInput(word)
     if (err) setError(err)
     let root
@@ -78,7 +79,7 @@ function App() {
         <h1>Spanish Verbs</h1>
         <form>
           <input autoFocus='on' ref={input} autoComplete='off' onChange={inputChange} placeholder='Conjugate' name='word'></input>
-          <button onClick={(e) => handleSubmit(e, currentWord)}><img src={Arrow} alt='arrow icon'></img></button>
+          <button onClick={(e) => handleSubmit(e, input.current.value)}><img src={Arrow} alt='arrow icon'></img></button>
         </form>
       </header>
 
