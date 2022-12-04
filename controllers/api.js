@@ -4,7 +4,7 @@ module.exports = {
   getVerbs: async (req, res) => {
     let verb = req.params.verb
     try {
-      const word = await Verb.find({word:verb})
+      const word = await Verb.find({word:verb}, {_id:0})
       res.json(word)
      
     } catch (err) {
