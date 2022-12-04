@@ -16,6 +16,9 @@ connectDB()
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send("GET Request Called")
+})
 
 app.use("/api", apiRoutes);
 //Server Running
