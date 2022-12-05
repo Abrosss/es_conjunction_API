@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send("GET Request Called")
+  res.send("GET Request Called. Spanish verbs")
 })
 
 app.use("/api", apiRoutes);
