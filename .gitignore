@@ -1,4 +1,6 @@
 .vercel
 config/.env
 .gitignore
+utilities.js
 node_modules
+vercel.json
