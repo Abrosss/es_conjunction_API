@@ -6,13 +6,41 @@ module.exports = {
     let verb = req.params.verb
     try {
       const word = await Verb.find({word:verb}, {_id:0})
-      res.json(word)
+    
+        res.json(word)
+      
      
     } catch (err) {
       console.log(err);
     }
 
   }, 
+  searchVerbs: async (req, res) => {
+    let searchQuery = req.params.searchQuery
+    let matchedVerbs = []
+    try {
+      const exactWord = await Verb.findOne({ word: searchQuery });
+      matchedVerbs = await Verb.find({ word: new RegExp(`^${searchQuery}`) }).limit(5);
+      if(exactWord) {
+        matchedVerbs = [exactWord].concat(matchedVerbs.filter(x => x.word !== exactWord.word))
+    
+      }
+      
+      //typeahead for english verbs logic
+      const english = await Translation.find({ "translation": { $eq: searchQuery } }).limit(5)
+      if(english.length > 0) {
+        matchedVerbs = english.concat(matchedVerbs)
+       
+      }
+      res.json(matchedVerbs.slice(0,5))
+        
+      
+     
+    } catch (err) {
+      console.log(err);
+    }
+   
+  },
   oneRoot: async (req, res) => {
     let verb = req.params.verb
     try {
@@ -54,7 +82,4 @@ module.exports = {
 
   }
 }
-
-
-
 

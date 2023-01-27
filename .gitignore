@@ -1,5 +1,6 @@
 .vercel
 config/.env
+controllers/apiMore.js
 .gitignore
 utilities.js
 node_modules
